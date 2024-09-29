@@ -3,8 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Horizontal Menu with Company Name</title>
+  <title>Responsive Horizontal Menu with Company Name</title>
   <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
     header {
       background-color: #f0f0f0;
       padding: 10px;
@@ -12,11 +17,13 @@
 
     nav {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
+      align-items: center;
     }
 
     .company-name {
-      font-size: 20px; /* Adjust the font size as needed */
+      font-size: 20px;
       font-weight: bold;
     }
 
@@ -24,6 +31,8 @@
       list-style: none;
       margin: 0;
       padding: 0;
+      display: flex;
+      flex-wrap: wrap;
     }
 
     nav ul li {
@@ -40,6 +49,7 @@
 
     .form-container {
       margin-top: 20px;
+      padding: 20px;
     }
 
     form {
@@ -47,10 +57,85 @@
       padding: 20px;
       border: 1px solid #ccc;
       background-color: #f9f9f9;
+      max-width: 100%; /* Full width for smaller screens */
     }
 
     #shuttle-form {
       display: block; /* Show shuttle service form by default */
+    }
+
+    /* Mobile Styles (up to 600px width) */
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .company-name {
+        margin-bottom: 10px;
+      }
+
+      nav ul {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      nav ul li {
+        margin-bottom: 10px;
+        width: 100%;
+        text-align: left;
+      }
+
+      nav ul li a {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #ddd;
+      }
+
+      .form-container {
+        padding: 10px;
+      }
+
+      form {
+        padding: 10px;
+        width: 100%; /* Take full width on smaller screens */
+      }
+    }
+
+    /* Tablet Styles (600px to 900px width) */
+    @media (min-width: 601px) and (max-width: 900px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .company-name {
+        margin-bottom: 10px;
+      }
+
+      nav ul {
+        flex-direction: column;
+      }
+
+      nav ul li {
+        margin-bottom: 10px;
+      }
+    }
+
+    /* Larger Screen Styles (900px and up) */
+    @media (min-width: 901px) {
+      nav ul {
+        flex-direction: row;
+      }
+
+      nav ul li {
+        margin-right: 20px;
+      }
+
+      form {
+        max-width: 600px; /* Form size constrained for large screens */
+      }
     }
   </style>
 </head>
