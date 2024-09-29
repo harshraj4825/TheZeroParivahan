@@ -1,316 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TheZero Parivahan</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <style>
-        /* Basic styling for tabs */
-        .tab {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            background-color: #f1f1f1;
-            border-bottom: 1px solid #ccc;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Horizontal Menu with Company Name</title>
+  <style>
+    header {
+      background-color: #f0f0f0;
+      padding: 10px;
+    }
 
-        .tab button {
-            flex: 1;
-            padding: 15px;
-            font-size: 16px;
-            background-color: #f1f1f1;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+    nav {
+      display: flex;
+      justify-content: space-between;
+    }
 
-        .tab button.active {
-            background-color: #555;
-            color: white;
-        }
+    .company-name {
+      font-size: 20px; /* Adjust the font size as needed */
+      font-weight: bold;
+    }
 
-        .tabcontent {
-            display: none;
-            padding: 20px;
-            border-top: 1px solid #ccc;
-        }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
 
-        .tabcontent.active {
-            display: block;
-        }
+    nav ul li {
+      display: inline-block;
+      margin-right: 10px;
+    }
 
-        /* Responsive design for mobile devices */
-        @media (max-width: 768px) {
-            .tab button {
-                font-size: 14px;
-                padding: 10px;
-            }
+    nav ul li a {
+      text-decoration: none;
+      color: #000;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
 
-            .tabcontent {
-                padding: 10px;
-            }
+    .form-container {
+      margin-top: 20px;
+    }
 
-            header h1 {
-                font-size: 24px;
-                text-align: center;
-            }
+    form {
+      display: none; /* Initially hide all forms */
+      padding: 20px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+    }
 
-            body {
-                font-size: 16px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .tab {
-                flex-direction: column;
-                justify-content: flex-start;
-            }
-
-            .tab button {
-                padding: 12px;
-                font-size: 14px;
-                text-align: left;
-                width: 100%;
-            }
-        }
-    </style>
+    #shuttle-form {
+      display: block; /* Show shuttle service form by default */
+    }
+  </style>
 </head>
 <body>
-    <h1>TheZero Parivahan</h1>
-    <p>For quick service, call us at <a href="tel:+919876543210">+91 98765 43210</a></p>
+  <header>
+    <nav>
+      <div class="company-name">
+        The Zero
+      </div>
+      <ul>
+        <li><a href="#" onclick="showForm('shuttle-form')">Shuttle Services</a></li>
+        <li><a href="#" onclick="showForm('car-rent-form')">Car Rent Services</a></li>
+        <li><a href="#" onclick="showForm('shuttle-timings-form')">Check Shuttle Timings</a></li>
+        <li><a href="#" onclick="showForm('booking-status-form')">Check Your Booking Status</a></li>
+        <li><a href="tel:+919876543210">Call Us for booking +91 98765 43210</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <main>
-        <!-- Tab buttons for services -->
-        <div class="tab">
-            <button class="tablinks active" onclick="openService(event, 'ShuttleServices')">Shuttle Services</button>
-            <button class="tablinks" onclick="openService(event, 'CarRentServices')">Car Rent Services</button>
-            <!-- More services can be added here -->
-        </div>
+  <div class="form-container">
+    <!-- Shuttle Services Form -->
+    <form id="shuttle-form">
+      <h3>Shuttle Services Booking Form</h3>
+      <label for="pickup">Pick-up Location:</label>
+      <input type="text" id="pickup" name="pickup"><br><br>
+      <label for="dropoff">Drop-off Location:</label>
+      <input type="text" id="dropoff" name="dropoff"><br><br>
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date"><br><br>
+      <input type="submit" value="Book Shuttle">
+    </form>
 
-        <!-- Shuttle Services Section -->
-        <section id="ShuttleServices" class="tabcontent active">
-            <h2>Shuttle Services</h2>
-            <p>Book your shuttle with specific pick-up and drop-off points on one of our routes.</p>
-            <form th:action="@{/booking/shuttle}" method="post">
-    <fieldset>
-        <legend>Shuttle Booking</legend>
+    <!-- Car Rent Services Form -->
+    <form id="car-rent-form">
+      <h3>Car Rent Services Booking Form</h3>
+      <label for="car-type">Car Type:</label>
+      <input type="text" id="car-type" name="car-type"><br><br>
+      <label for="pickup-location">Pick-up Location:</label>
+      <input type="text" id="pickup-location" name="pickup-location"><br><br>
+      <label for="rental-date">Rental Date:</label>
+      <input type="date" id="rental-date" name="rental-date"><br><br>
+      <input type="submit" value="Rent Car">
+    </form>
 
-        <!-- Passenger Name -->
-        <label for="Name">Name:</label>
-        <input type="text" id="Name" name="Name" placeholder="Enter your name" required>
-        <br><br>
+    <!-- Check Shuttle Timings Form -->
+    <form id="shuttle-timings-form">
+      <h3>Check Shuttle Timings</h3>
+      <label for="route">Route:</label>
+      <input type="text" id="route" name="route"><br><br>
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date"><br><br>
+      <input type="submit" value="Check Timings">
+    </form>
 
-        <!-- Mobile Number -->
-        <label for="mobileNumber">Mobile Number:</label>
-        <input type="tel" id="mobileNumber" name="mobileNumber" pattern="[0-9]{10}" placeholder="Enter 10-digit mobile number" required>
-        <br><br>
+    <!-- Check Booking Status Form -->
+    <form id="booking-status-form">
+      <h3>Check Your Booking Status</h3>
+      <label for="booking-id">Booking ID:</label>
+      <input type="text" id="booking-id" name="booking-id"><br><br>
+      <input type="submit" value="Check Status">
+    </form>
+  </div>
 
-        <!-- Route Selection -->
-        <label for="route">Route:</label>
-        <select id="route" name="route" required onchange="updateShuttleOptions()">
-            <option value="">Select a route</option>
-            <option value="route1">Route 1: City A - City E</option>
-            <option value="route2">Route 2: City F - City J</option>
-        </select>
-        <br><br>
+  <footer>
+    <p>&copy; 2024 TheZero Parivahan. All Rights Reserved.</p>
+  </footer>
 
-        <!-- Pick-up Point -->
-        <label for="pickupPoint">Pick-up Point:</label>
-        <select id="pickupPoint" name="pickupPoint" required onchange="updateShuttleDetails()">
-            <option value="">Select pick-up point</option>
-        </select>
-        <br><br>
-
-        <!-- Drop-off Point -->
-        <label for="dropPoint">Drop-off Point:</label>
-        <select id="dropPoint" name="dropPoint" required onchange="updateShuttleDetails()">
-            <option value="">Select drop-off point</option>
-        </select>
-        <br><br>
-
-        <!-- Date -->
-        <label for="shuttleDate">Date:</label>
-        <input type="date" id="shuttleDate" name="shuttleDate" required>
-        <br><br>
-
-        <!-- Seats -->
-        <label for="shuttleSeats">Seats:</label>
-        <input type="number" id="shuttleSeats" name="shuttleSeats" min="1" value="1" required onchange="updatePrice()">
-        <br><br>
-
-        <!-- Coupon Code -->
-        <label for="couponCode">Coupon Code:</label>
-        <input type="text" id="couponCode" name="couponCode" placeholder="Enter coupon code" onchange="applyCoupon()">
-        <br><br>
-
-        <!-- Price Information -->
-        <label for="shuttlePrice">Price Before Discount (₹):</label>
-        <input type="text" id="shuttlePrice" name="shuttlePrice" readonly required>
-        <br><br>
-
-        <label for="discountPrice">Discount (₹):</label>
-        <input type="text" id="discountPrice" name="discountPrice" readonly>
-        <br><br>
-
-        <label for="finalPrice">Final Price (₹):</label>
-        <input type="text" id="finalPrice" name="finalPrice" readonly>
-        <br><br>
-
-        <!-- Submit Button -->
-        <button type="submit">Book Shuttle</button>
-    </fieldset>
-</form>
-
-
-        </section>
-
-        <!-- Car Rent Services Section -->
-        <section id="CarRentServices" class="tabcontent">
-            <h2>Car Rent Services</h2>
-            <p>Rent a car for your personal or business trips with flexible timings and destinations.</p>
-            <p>Service is coming soon</p>
-            <form th:action="@{/booking/car}" method="post">
-                <!-- Car rent booking form fields... -->
-            </form>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 TheZero Parivahan. All Rights Reserved.</p>
-    </footer>
-
-    <script>
-    const routeShuttleOptions = {
-            route1: [
-                { stop: 'Stop A', time: '08:00 AM' },
-                { stop: 'Stop B', time: '08:30 AM' },
-                { stop: 'Stop C', time: '09:00 AM' },
-                { stop: 'Stop D', time: '09:30 AM' },
-                { stop: 'Stop E', time: '10:00 AM' }
-            ],
-            route2: [
-                { stop: 'Stop F', time: '08:00 AM' },
-                { stop: 'Stop G', time: '08:30 AM' },
-                { stop: 'Stop H', time: '09:00 AM' },
-                { stop: 'Stop I', time: '09:30 AM' },
-                { stop: 'Stop J', time: '10:00 AM' }
-            ]
-            // More routes can be added similarly
-        };
-
-        const validCoupons = {
-            'SAVE20': 0.20,  // 20% discount
-            'DISCOUNT50': 0.50  // 50% discount
-            // More coupon codes can be added here
-        };
-
-        function updateShuttleOptions() {
-            const routeSelect = document.getElementById('route').value;
-            const pickupPointSelect = document.getElementById('pickupPoint');
-            const dropPointSelect = document.getElementById('dropPoint');
-
-            const selectedRouteStops = routeShuttleOptions[routeSelect];
-
-            // Clear the current options
-            pickupPointSelect.innerHTML = '';
-            dropPointSelect.innerHTML = '';
-
-            selectedRouteStops.forEach((stop, index) => {
-                // Add options for pick-up points
-                const pickupOption = document.createElement('option');
-                pickupOption.value = index;
-                pickupOption.text = `${stop.stop} at ${stop.time}`;
-                pickupPointSelect.appendChild(pickupOption);
-
-                // Add options for drop-off points
-                const dropOption = document.createElement('option');
-                dropOption.value = index;
-                dropOption.text = `${stop.stop} at ${stop.time}`;
-                dropPointSelect.appendChild(dropOption);
-            });
-
-            updateShuttleDetails();
-        }
-
-        function updateShuttleDetails() {
-            const routeSelect = document.getElementById('route').value;
-            const pickupPointIndex = document.getElementById('pickupPoint').value;
-            const dropPointIndex = document.getElementById('dropPoint').value;
-            const seats = parseInt(document.getElementById('shuttleSeats').value);
-
-            const selectedRouteStops = routeShuttleOptions[routeSelect];
-            const pickupStop = selectedRouteStops[pickupPointIndex];
-            const dropStop = selectedRouteStops[dropPointIndex];
-
-            const priceInput = document.getElementById('shuttlePrice');
-
-            // Set the price based on distance (this can be customized as needed)
-            const distance = Math.abs(dropPointIndex - pickupPointIndex);
-            const pricePerKm = 50; // Price per km, adjust accordingly
-            const price = distance * pricePerKm * seats;
-
-            priceInput.value = price;
-
-            applyCoupon();
-        }
-
-        function applyCoupon() {
-            const couponCode = document.getElementById('couponCode').value.trim();
-            const priceInput = parseFloat(document.getElementById('shuttlePrice').value);
-            const discountInput = document.getElementById('discountPrice');
-            const finalPriceInput = document.getElementById('finalPrice');
-
-            let discountedPrice = priceInput;
-            let discountAmount = 0;
-
-            if (validCoupons[couponCode]) {
-                const discount = validCoupons[couponCode];
-                discountAmount = priceInput * discount;
-                discountedPrice = priceInput - discountAmount;
-            }
-
-            discountInput.value = discountAmount.toFixed(2);  // Display the discount amount
-            finalPriceInput.value = discountedPrice.toFixed(2);  // Update the final price
-        }
-
-        // Initialize form with default route and shuttle options on load
-        document.addEventListener('DOMContentLoaded', function() {
-            updateShuttleOptions(); // Load default route and stops
-            setDefaultDate(); // Set today's date by default
-        });
-
-        function setDefaultDate() {
-            const shuttleDateInput = document.getElementById('shuttleDate');
-            const today = new Date().toISOString().split('T')[0];
-            shuttleDateInput.value = today;
-        }
-
-        function openService(evt, serviceName) {
-            // Hide all tab contents
-            var tabcontent = document.getElementsByClassName("tabcontent");
-            for (var i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-                tabcontent[i].classList.remove("active");
-            }
-
-            // Remove active class from all buttons
-            var tablinks = document.getElementsByClassName("tablinks");
-            for (var i = 0; i < tablinks.length; i++) {
-                tablinks[i].classList.remove("active");
-            }
-
-            // Show the selected tab content and make the button active
-            document.getElementById(serviceName).style.display = "block";
-            document.getElementById(serviceName).classList.add("active");
-            evt.currentTarget.classList.add("active");
-        }
-
-        // Default to showing the first tab on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementsByClassName('tablinks')[0].click();
-        });
-    </script>
+  <script>
+    function showForm(formId) {
+      // Hide all forms
+      const forms = document.querySelectorAll('form');
+      forms.forEach(form => form.style.display = 'none');
+      
+      // Show the selected form
+      const selectedForm = document.getElementById(formId);
+      if (selectedForm) {
+        selectedForm.style.display = 'block';
+      }
+    }
+  </script>
 </body>
 </html>
