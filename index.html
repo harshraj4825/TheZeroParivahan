@@ -1,220 +1,308 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Responsive Horizontal Menu with Company Name</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero Travel</title>
+    <style>
+        body {
+          margin: 0;
+          font-family: Arial, sans-serif;
+        }
 
-    header {
-      background-color: #f0f0f0;
-      padding: 10px;
-    }
+        header {
+          background-color: #f0f0f0;
+          padding: 10px;
+        }
 
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-    }
+        nav {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          align-items: center;
+        }
 
-    .company-name {
-      font-size: 20px;
-      font-weight: bold;
-    }
+        .company-name {
+          font-size: 20px;
+          font-weight: bold;
+        }
 
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-wrap: wrap;
-    }
+        nav ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-wrap: wrap;
+        }
 
-    nav ul li {
-      display: inline-block;
-      margin-right: 10px;
-    }
+        nav ul li {
+          display: inline-block;
+          margin-right: 10px;
+        }
 
-    nav ul li a {
-      text-decoration: none;
-      color: #000;
-      padding: 5px 10px;
-      cursor: pointer;
-    }
+        nav ul li a {
+          text-decoration: none;
+          color: #000;
+          padding: 5px 10px;
+          cursor: pointer;
+        }
 
-    .form-container {
-      margin-top: 20px;
-      padding: 20px;
-    }
+        .form-container {
+          margin-top: 20px;
+          padding: 20px;
+        }
 
-    form {
-      display: none; /* Initially hide all forms */
-      padding: 20px;
-      border: 1px solid #ccc;
-      background-color: #f9f9f9;
-      max-width: 100%; /* Full width for smaller screens */
-    }
+        form {
+          display: none; /* Initially hide all forms */
+          padding: 20px;
+          border: 1px solid #ccc;
+          background-color: #f9f9f9;
+          max-width: 100%; /* Full width for smaller screens */
+        }
 
-    #shuttle-form {
-      display: block; /* Show shuttle service form by default */
-    }
+        #shuttle-form {
+          display: block; /* Show shuttle service form by default */
+        }
 
-    /* Mobile Styles (up to 600px width) */
-    @media (max-width: 600px) {
-      nav {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+        /* Mobile Styles (up to 600px width) */
+        @media (max-width: 600px) {
+          nav {
+            flex-direction: column;
+            align-items: flex-start;
+          }
 
-      .company-name {
-        margin-bottom: 10px;
-      }
+          .company-name {
+            margin-bottom: 10px;
+          }
 
-      nav ul {
-        flex-direction: column;
-        width: 100%;
-      }
+          nav ul {
+            flex-direction: column;
+            width: 100%;
+          }
 
-      nav ul li {
-        margin-bottom: 10px;
-        width: 100%;
-        text-align: left;
-      }
+          nav ul li {
+            margin-bottom: 10px;
+            width: 100%;
+            text-align: left;
+          }
 
-      nav ul li a {
-        display: block;
-        width: 100%;
-        padding: 10px;
-        background-color: #ddd;
-      }
+          nav ul li a {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #ddd;
+          }
 
-      .form-container {
-        padding: 10px;
-      }
+          .form-container {
+            padding: 10px;
+          }
 
-      form {
-        padding: 10px;
-        width: 100%; /* Take full width on smaller screens */
-      }
-    }
+          form {
+            padding: 10px;
+            width: 100%; /* Take full width on smaller screens */
+          }
+        }
 
-    /* Tablet Styles (600px to 900px width) */
-    @media (min-width: 601px) and (max-width: 900px) {
-      nav {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+        /* Tablet Styles (600px to 900px width) */
+        @media (min-width: 601px) and (max-width: 900px) {
+          nav {
+            flex-direction: column;
+            align-items: flex-start;
+          }
 
-      .company-name {
-        margin-bottom: 10px;
-      }
+          .company-name {
+            margin-bottom: 10px;
+          }
 
-      nav ul {
-        flex-direction: column;
-      }
+          nav ul {
+            flex-direction: column;
+          }
 
-      nav ul li {
-        margin-bottom: 10px;
-      }
-    }
+          nav ul li {
+            margin-bottom: 10px;
+          }
+        }
 
-    /* Larger Screen Styles (900px and up) */
-    @media (min-width: 901px) {
-      nav ul {
-        flex-direction: row;
-      }
+        /* Larger Screen Styles (900px and up) */
+        @media (min-width: 901px) {
+          nav ul {
+            flex-direction: row;
+          }
 
-      nav ul li {
-        margin-right: 20px;
-      }
-
-      form {
-        max-width: 600px; /* Form size constrained for large screens */
-      }
-    }
-  </style>
+          nav ul li {
+            margin-right: 20px;
+          }
+          form {
+            max-width: 600px; /* Form size constrained for large screens */
+          }
+        }
+    </style>
 </head>
 <body>
-  <header>
+<header>
     <nav>
-      <div class="company-name">
-        The Zero
-      </div>
-      <ul>
-        <li><a href="#" onclick="showForm('shuttle-form')">Shuttle Services</a></li>
-        <li><a href="#" onclick="showForm('car-rent-form')">Car Rent Services</a></li>
-        <li><a href="#" onclick="showForm('shuttle-timings-form')">Check Shuttle Timings</a></li>
-        <li><a href="#" onclick="showForm('booking-status-form')">Check Your Booking Status</a></li>
-        <li><a href="tel:+919876543210">Call Us for booking +91 98765 43210</a></li>
-      </ul>
+        <div class="company-name">
+            The Zero, Cheapest way to travel
+        </div>
+        <ul>
+            <li><a href="#" onclick="showForm('shuttle-form')">Shuttle Services</a></li>
+<!--            <li><a href="#" onclick="showForm('car-rent-form')">Car Rent Services</a></li>-->
+            <li><a href="#" onclick="showForm('shuttle-timings-form')">Check Shuttle Timings</a></li>
+            <li><a href="#" onclick="showForm('booking-status-form')">Check Your Booking Status</a></li>
+            <li><a href="tel:+919876543210">Call Us for booking +91 98765 43210</a></li>
+        </ul>
     </nav>
-  </header>
+</header>
 
-  <div class="form-container">
+<div class="form-container">
     <!-- Shuttle Services Form -->
-    <form id="shuttle-form">
-      <h3>Shuttle Services Booking Form</h3>
-      <label for="pickup">Pick-up Location:</label>
-      <input type="text" id="pickup" name="pickup"><br><br>
-      <label for="dropoff">Drop-off Location:</label>
-      <input type="text" id="dropoff" name="dropoff"><br><br>
-      <label for="date">Date:</label>
-      <input type="date" id="date" name="date"><br><br>
-      <input type="submit" value="Book Shuttle">
+    <form id="shuttle-form" th:action="@{/booking/shuttle}" method="post">
+        <h3>Shuttle Services Booking Form</h3>
+
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required aria-required="true">
+
+        <label for="mobileNumber">Mobile Number</label>
+        <input type="tel" id="mobileNumber" name="mobileNumber" pattern="[0-9]{10}" placeholder="Enter 10-digit mobile number" required aria-required="true">
+
+        <label for="shuttle-form-route">Select Route</label>
+        <select id="shuttle-form-route" name="route" required aria-required="true" onchange="updateShuttleOptions()">
+            <option value="" disabled selected>Select a route</option>
+            <option value="route1">Route 1: City A - City E</option>
+            <option value="route2">Route 2: City F - City J</option>
+        </select>
+
+        <label for="pickupPoint">Pick-up Location:</label>
+        <select id="pickupPoint" name="pickupPoint"></select><br><br>
+
+        <label for="dropPoint">Drop-off Location:</label>
+        <select id="dropPoint" name="dropPoint"></select><br><br>
+
+        <label for="shuttle-form-date">Date:</label>
+        <input type="date" id="shuttle-form-date" name="date"><br><br>
+
+        <input type="submit" value="Book Shuttle">
     </form>
+
+    <!-- Shuttle Confirmation Message -->
+    <div id="confirmation-message" style="display: none;">
+        <h3>Booking Confirmed!</h3>
+        <p>Your Booking ID: <span id="bookingId"></span></p>
+        <button onclick="bookAnotherShuttle()">Book Another Shuttle</button>
+    </div>
 
     <!-- Car Rent Services Form -->
-    <form id="car-rent-form">
-      <h3>Car Rent Services Booking Form</h3>
-      <label for="car-type">Car Type:</label>
-      <input type="text" id="car-type" name="car-type"><br><br>
-      <label for="pickup-location">Pick-up Location:</label>
-      <input type="text" id="pickup-location" name="pickup-location"><br><br>
-      <label for="rental-date">Rental Date:</label>
-      <input type="date" id="rental-date" name="rental-date"><br><br>
-      <input type="submit" value="Rent Car">
-    </form>
+<!--    <form id="car-rent-form">-->
+<!--        <h3>Car Rent Services Booking Form</h3>-->
+<!--        <label for="car-type">Car Type:</label>-->
+<!--        <input type="text" id="car-type" name="car-type"><br><br>-->
+<!--        <label for="pickup-location">Pick-up Location:</label>-->
+<!--        <input type="text" id="pickup-location" name="pickup-location"><br><br>-->
+<!--        <label for="rental-date">Rental Date:</label>-->
+<!--        <input type="date" id="rental-date" name="rental-date"><br><br>-->
+<!--        <input type="submit" value="Rent Car">-->
+<!--    </form>-->
 
     <!-- Check Shuttle Timings Form -->
     <form id="shuttle-timings-form">
-      <h3>Check Shuttle Timings</h3>
-      <label for="route">Route:</label>
-      <input type="text" id="route" name="route"><br><br>
-      <label for="date">Date:</label>
-      <input type="date" id="date" name="date"><br><br>
-      <input type="submit" value="Check Timings">
+        <h3>Check Shuttle Timings</h3>
+        <label for="route">Route:</label>
+        <input type="text" id="route" name="route"><br><br>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date"><br><br>
+        <input type="submit" value="Check Timings">
     </form>
 
     <!-- Check Booking Status Form -->
     <form id="booking-status-form">
-      <h3>Check Your Booking Status</h3>
-      <label for="booking-id">Booking ID:</label>
-      <input type="text" id="booking-id" name="booking-id"><br><br>
-      <input type="submit" value="Check Status">
+        <h3>Check Your Booking Status</h3>
+        <label for="booking-id">Booking ID:</label>
+        <input type="text" id="booking-id" name="booking-id"><br><br>
+        <input type="submit" value="Check Status">
     </form>
-  </div>
+</div>
 
-  <footer>
+<footer>
     <p>&copy; 2024 TheZero Parivahan. All Rights Reserved.</p>
-  </footer>
+</footer>
 
-  <script>
+<script>
     function showForm(formId) {
       // Hide all forms
       const forms = document.querySelectorAll('form');
       forms.forEach(form => form.style.display = 'none');
-      
+
       // Show the selected form
       const selectedForm = document.getElementById(formId);
       if (selectedForm) {
         selectedForm.style.display = 'block';
       }
     }
-  </script>
+
+    // Shuttle options based on route selection
+    const routeShuttleOptions = {
+        route1: [
+            { stop: 'Stop A', time: '08:00 AM' },
+            { stop: 'Stop B', time: '08:30 AM' },
+            { stop: 'Stop C', time: '09:00 AM' },
+            { stop: 'Stop D', time: '09:30 AM' },
+            { stop: 'Stop E', time: '10:00 AM' }
+        ],
+        route2: [
+            { stop: 'Stop F', time: '08:00 AM' },
+            { stop: 'Stop G', time: '08:30 AM' },
+            { stop: 'Stop H', time: '09:00 AM' },
+            { stop: 'Stop I', time: '09:30 AM' },
+            { stop: 'Stop J', time: '10:00 AM' }
+        ]
+    };
+
+    function updateShuttleOptions() {
+        const routeSelect = document.getElementById('shuttle-form-route').value;
+        const pickupPointSelect = document.getElementById('pickupPoint');
+        const dropPointSelect = document.getElementById('dropPoint');
+
+        const selectedRouteStops = routeShuttleOptions[routeSelect];
+
+        pickupPointSelect.innerHTML = '';
+        dropPointSelect.innerHTML = '';
+
+        selectedRouteStops.forEach((stop, index) => {
+            const pickupOption = document.createElement('option');
+            pickupOption.value = index;
+            pickupOption.text = `${stop.stop} at ${stop.time}`;
+            pickupPointSelect.appendChild(pickupOption);
+
+            const dropOption = document.createElement('option');
+            dropOption.value = index;
+            dropOption.text = `${stop.stop} at ${stop.time}`;
+            dropPointSelect.appendChild(dropOption);
+        });
+    }
+
+    // Handle form submission and booking confirmation
+    document.querySelector('#shuttle-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+
+        fetch('/booking/shuttle', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('shuttle-form').style.display = 'none';
+            document.getElementById('confirmation-message').style.display = 'block';
+            document.getElementById('bookingId').innerText = data.bookingId;
+        })
+        .catch(error => console.error('Error:', error));
+    });
+
+    function bookAnotherShuttle() {
+        document.getElementById('confirmation-message').style.display = 'none';
+        document.getElementById('shuttle-form').style.display = 'block';
+        document.getElementById('shuttle-form').reset();
+    }
+</script>
 </body>
 </html>
