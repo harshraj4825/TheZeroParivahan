@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZeroT</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <nav>
+            <input type="checkbox" id="menu-toggle" hidden>
+            <label for="menu-toggle" class="toggle">
+                <span class="top_line common"></span>
+                <span class="middle_line common"></span>
+                <span class="bottom_line common"></span>
+            </label>
+            <span class="company-logo">ZeroT</span>
+            
+            <ul>
+                <li><a href="#" onclick="showForm('fetchForm')">Shuttle Services</a></li>
+                <li><a href="#" onclick="showForm('shuttle-timings-form')">Check Shuttle Timings</a></li>
+                <li><a href="#" onclick="showForm('booking-status-form')">Check Your Booking Status</a></li>
+                <li><a href="tel:+919876543210">Call Us for Booking +91 98765 43210</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <!-- Shuttle Services Booking Form -->
+        <form id="fetchForm" class="hidden-form">
+            <h3>Shuttle Services Booking Form</h3>
+            
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            
+            <label for="mobileNumber">Mobile Number</label>
+            <input type="tel" id="mobileNumber" name="mobileNumber" pattern="[0-9]{10}" placeholder="Enter 10-digit mobile number" required>
+            
+            <label for="shuttle-form-route">Select Route</label>
+            <select id="shuttle-form-route" name="route" required onchange="updateShuttleOptions()">
+                <option value="" disabled selected>Select a route</option>
+                <option value="route1">Route 1: City A - City E</option>
+                <option value="route2">Route 2: City F - City J</option>
+            </select>
+            
+            <label for="pickupPoint">Pick-up Location</label>
+            <select id="pickupPoint" name="pickupPoint" required></select>
+            
+            <label for="dropPoint">Drop-off Location</label>
+            <select id="dropPoint" name="dropPoint" required></select>
+            
+            <label for="dateOfTravel">Date of Travel</label>
+            <input type="date" id="dateOfTravel" name="dateOfTravel" required>
+            
+            <label for="noOfSeats">Number of Seats</label>
+            <input type="number" id="noOfSeats" name="noOfSeats" min="1" max="10" placeholder="Enter number of seats" required>
+            
+            <label for="finalPriceWithoutDiscount">Price</label>
+            <input type="text" id="finalPriceWithoutDiscount" name="finalPriceWithoutDiscount" readonly placeholder="Final price before discount">
+            
+            <label for="coupon">Coupon</label>
+            <input type="text" id="coupon" name="coupon" placeholder="Enter coupon code if available">
+            
+            <button type="button" onclick="applyCoupon()">Apply Coupon</button>
+            
+            <p id="couponStatus"></p>
+            
+            <label for="finalPrice">Final Price</label>
+            <input type="text" id="finalPriceWithDiscount" name="finalPriceWithDiscount" readonly placeholder="Final price with discount">
+            
+            <input type="submit" value="Book Shuttle">
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 ZeroTrans Solutions Pvt Ltd. All Rights Reserved.</p>
+    </footer>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
